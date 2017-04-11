@@ -1,44 +1,40 @@
-# Lightweight [Softether VPN][softether] Bridge
+# Lightweight [Softether VPN][softether] Client
 [![Build Status][project-build-image]][project-build-link] [![Docker Build][docker-build-image]][docker-build-link] [![Docker Stars][docker-stars-image]][docker-stars-link] [![Docker Pulls][docker-pulls-image]][docker-pulls-link]
 
-This docker only contains a working **SoftEther VPN Bridge** other components have been removed.
+This docker only contains a working **SoftEther VPN Client** other components have been removed.
 
 If you need other parts :
-* [SoftEther VPN Client][client-link]
+* [SoftEther VPN Bridge][bridge-link]
 * [SoftEther VPN CMD][cmd-link]
 * [SoftEther VPN Server][server-link]
 ___
 
-# What is SoftEther VPN Bridge
-> SoftEther VPN Bridge is software that allows you to cascade-connect to a Virtual Hub of SoftEther VPN Server operating at a remote location and create a Layer-2 bridge connection between that VPN connection and a physical network adapter on a computer running SoftEther VPN Bridge. SoftEther VPN Bridge is the ideal software for a computer connected to a remote base LAN when you want to connect the remote base LAN to a VPN configured with SoftEther VPN Server (namely, a Virtual Hub on a SoftEther VPN Server).
+# What is SoftEther VPN Client
+> SoftEther VPN Client is VPN client software with a Virtual Network Adapter function that enables connection to a Virtual Hub on SoftEther VPN Server operated at a remote location. The user can use the easy settings on a computer with SoftEther VPN Client installed to connect to a Virtual Hub on SoftEther VPN Server and flexibly connect via a Virtual Network Adapter.
 
-[https://www.softether.org/4-docs/1-manual/5._SoftEther_VPN_Bridge_Manual](https://www.softether.org/4-docs/1-manual/5._SoftEther_VPN_Bridge_Manual)
+[https://www.softether.org/4-docs/1-manual/4._SoftEther_VPN_Client_Manual](https://www.softether.org/4-docs/1-manual/4._SoftEther_VPN_Client_Manual)
 
 # About this image
 Versions will follow [Softether VPN Github Repository][softether-repository] tags and [Alpine][alpine-link] update.
 
-This image is make'd from [the offical Softether VPN Github Repository][softether-repository] with 1 patchs :
-1. [Server Patch][server-patch]:
-  * Default Server cipher changed from **"RC4-MD5"** to **"DHE-RSA-AES256-SHA"**
+This image is make'd from [the offical Softether VPN Github Repository][softether-repository]
 
-Nothing else have been edited. So when you will start it the first time you will get the default configuration which is :
-* **/!\ Administration without any password /!\**
-* Bridge listenning on 443/tcp, 992/tcp, 1194/tcp+udp, tcp/5555
-* Unconfigured Bridge
+Nothing have been edited. So when you will start it the first time you will get the default configuration which is :
+* Unconfigured client
 
 You will have to configure it. To do so use :
 * [SoftEther VPN CMD][cmd-link] (any platform - Console)
 * [SoftEther VPN Server Manager][softether-download] (Windows, Mac OS X - GUI)
-* Edit by hand /usr/vpnserver/vpn_server.config then restart the server (Not Recommended)
+* Edit by hand /usr/vpnclient/vpn_client.config then restart the server (Not Recommended)
 
 # How to use this image
 For a simple use without persistence :
 ```
-docker run -d --cap-add NET_ADMIN -p 443:443/tcp -p 992:992/tcp -p 1194:1194/udp -p 5555:5555/tcp amary/softether-vpn-bridge
+docker run -d NET_ADMIN amary/softether-vpn-client
 ```
 For a simple use with persistence (will give you acces to configuration and logs) :
 ```
-docker run -d --cap-add NET_ADMIN -p 443:443/tcp -p 992:992/tcp -p 1194:1194/udp -p 5555:5555/tcp -v /host/path/vpnbridge:/usr/vpnbridge:Z amary/softether-vpn-bridge
+docker run -d -v /host/path/vpnclient:/usr/vpnclient:Z amary/softether-vpn-client
 ```
 Add/delete any ```-p $PORT:$PORT/{tcp,udp} depending on you will ```
 
@@ -52,7 +48,7 @@ Add/delete any ```-p $PORT:$PORT/{tcp,udp} depending on you will ```
 [softether-download]: http://www.softether-download.com/en.aspx?product=softether
 [softether-repository]: https://github.com/SoftEtherVPN/SoftEtherVPN
 
-[client-link]: https://hub.docker.com/r/amary/softether-vpn-client/
+[bridge-link]: https://hub.docker.com/r/amary/softether-vpn-bridge/
 [cmd-link]: https://hub.docker.com/r/amary/softether-vpn-cmd/
 [server-link]: https://hub.docker.com/r/amary/softether-vpn-server/
 
@@ -63,14 +59,14 @@ Add/delete any ```-p $PORT:$PORT/{tcp,udp} depending on you will ```
 [openvpn-patch]: https://github.com/AntoineMary/docker-softether-vpn-bridge/blob/master/assets/patchs/01_OpenVPN.sh
 
 [//]: <> (Badges)
-[project-build-image]: https://travis-ci.org/AntoineMary/docker-softether-vpn-bridge.svg?branch=master
-[project-build-link]: https://travis-ci.org/AntoineMary/docker-softether-vpn-bridge
+[project-build-image]: https://travis-ci.org/AntoineMary/docker-softether-vpn-client.svg?branch=master
+[project-build-link]: https://travis-ci.org/AntoineMary/docker-softether-vpn-client
 
-[docker-build-image]: https://img.shields.io/docker/automated/amary/softether-vpn-bridge.svg
-[docker-build-link]: https://hub.docker.com/r/amary/softether-vpn-bridge/
+[docker-build-image]: https://img.shields.io/docker/automated/amary/softether-vpn-client.svg
+[docker-build-link]: https://hub.docker.com/r/amary/softether-vpn-client/
 
-[docker-stars-image]: https://img.shields.io/docker/stars/amary/softether-vpn-bridge.svg
-[docker-stars-link]: https://hub.docker.com/r/amary/softether-vpn-bridge/
+[docker-stars-image]: https://img.shields.io/docker/stars/amary/softether-vpn-client.svg
+[docker-stars-link]: https://hub.docker.com/r/amary/softether-vpn-client/
 
-[docker-pulls-image]: https://img.shields.io/docker/pulls/amary/softether-vpn-bridge.svg
-[docker-pulls-link]: https://hub.docker.com/r/amary/softether-vpn-bridge/
+[docker-pulls-image]: https://img.shields.io/docker/pulls/amary/softether-vpn-client.svg
+[docker-pulls-link]: https://hub.docker.com/r/amary/softether-vpn-client/
