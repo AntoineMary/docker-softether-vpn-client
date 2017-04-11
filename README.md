@@ -30,7 +30,7 @@ You will have to configure it. To do so use :
 # How to use this image
 For a simple use without persistence :
 ```
-docker run -d NET_ADMIN amary/softether-vpn-client
+docker run -d amary/softether-vpn-client
 ```
 For a simple use with persistence (will give you acces to configuration and logs) :
 ```
