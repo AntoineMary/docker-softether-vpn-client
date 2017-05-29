@@ -1,6 +1,8 @@
 # Lightweight [Softether VPN][softether] Client
 [![Build Status][project-build-image]][project-build-link] [![Docker Build][docker-build-image]][docker-build-link] [![Docker Stars][docker-stars-image]][docker-stars-link] [![Docker Pulls][docker-pulls-image]][docker-pulls-link]
 
+[![MicroBadger Version][micro-version-image]][micro-version-links] [![MicroBadger Size][micro-size-image]][micro-size-link]
+
 This docker only contains a working **SoftEther VPN Client** other components have been removed.
 
 If you need other parts :
@@ -40,6 +42,7 @@ Add/delete any ```-p $PORT:$PORT/{tcp,udp} depending on you will ```
 
 # Changelog
 * v4.22-9634-beta : Initial Release
+* v4.22-9634-beta.patch1 : Update Alpine to 3.6, Improve Dockerfile, Secure Entrypoint
 
 [//]: <> (==== Reference Part ====)
 
@@ -70,3 +73,9 @@ Add/delete any ```-p $PORT:$PORT/{tcp,udp} depending on you will ```
 
 [docker-pulls-image]: https://img.shields.io/docker/pulls/amary/softether-vpn-client.svg
 [docker-pulls-link]: https://hub.docker.com/r/amary/softether-vpn-client/
+
+[micro-size-image]:https://images.microbadger.com/badges/image/amary/softether-vpn-client.svg
+[micro-size-link]: https://microbadger.com/images/amary/softether-vpn-client
+
+[micro-version-image]: https://images.microbadger.com/badges/version/amary/softether-vpn-client.svg
+[micro-version-links]: https://microbadger.com/images/amary/softether-vpn-client

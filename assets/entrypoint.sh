@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = '/usr/vpnclient/vpnclient' ]; then
+if [ "x$1" = 'x/usr/vpnclient/vpnclient' ]; then
     chown -R softether:softether /usr/vpnclient
     setcap 'cap_net_bind_service=+ep' /usr/vpnclient/vpnclient
 
